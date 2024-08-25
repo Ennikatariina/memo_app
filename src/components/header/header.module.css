@@ -1,0 +1,110 @@
+.horizontal_list {
+    list-style: none;
+    padding: 10px;
+    display: flex;
+    align-items: center; 
+    
+  }
+  
+  .horizontal_list li {
+    margin-right: 20px; /* Välimatka listaelementtien välillä */
+    font-weight: bold;
+    align-items: center;
+  }
+  
+.navBarContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    
+}
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  margin-left: 20px; 
+}
+
+.container {
+  padding:15px;
+  align-items: center;
+  background-color: #fdfdfd;
+}
+
+
+.mobileMenu {
+  display: flex;
+  align-items: center;
+  position: relative; 
+}
+
+.hamburgerIcon {
+  cursor: pointer;
+  width: 40px; /* Aseta kuvan leveys */
+  height: 40px;
+}
+.mobileList {
+  list-style: none;
+  padding: 20px;
+  padding-right: 50px;
+  margin:0;
+  position: absolute; /* Asetetaan absoluuttinen sijainti */
+  top: 100%; /* Aseta yläreuna kuvakkeen alapuolelle  */
+  left: 0;
+  background-color: #fbfbfb; /* Taustaväri */
+  border: 1px solid #ccc; /* Reunus */
+  border-radius: 4px; /* Pyöristä kulmat */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Varjostus */
+  z-index: 1; /* Aseta päällekkäisyyden indeksi */
+  display: none; /* Piilota oletuksena */
+}
+.mobileMenu:hover .mobileList {
+  display: block; /* Näytä valikko, kun hiiri on kuvakkeen päällä */
+}
+.mobileList li {
+  margin-bottom: 10px; /* Lisää välimatkaa listaelementtien välillä */
+  font-weight: bold;
+}
+.logoutButton {
+  margin-left: auto;
+}
+.homeIcon{
+  margin-left: 40px;
+  width: 40px; /* Aseta kuvan leveys */
+  height: 40px;
+  cursor: pointer;
+}
+.logoutContainer{
+  display: flex;
+  justify-content: flex-end;
+  align-items: right;
+  margin-left: auto;
+
+}
+.linkText{
+  font-weight: bold;
+}
+/* Media query, joka piilottaa .horizontal_listin ja näyttää .mobileListin mobiilinäytössä */
+@media only screen and (max-width: 767px) {
+  .headerContent {
+      display: none; /* Piilota vaakatasoinen lista mobiilinäytössä */
+  }
+  .navBarContainer{
+    display: block;
+  }
+
+}
+@media only screen and (min-width: 768px) {
+  .mobileMenu {
+      display: none; /* Piilota mobiilivalikko isolla näytöllä */
+  }
+  .container{
+    padding: 5px;
+  }
+  
+}

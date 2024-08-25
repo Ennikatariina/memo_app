@@ -1,0 +1,44 @@
+.categoriaContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; 
+    padding: 10px;
+}
+
+/* `boxContainer`-tyylit */
+.boxContainer {
+    flex: 1 1 calc(50% - 20px); 
+    max-width: calc(50% - 20px); 
+    box-sizing: border-box;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px; 
+}
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 100%; 
+    overflow: hidden;
+    border: 1px solid #ddd; 
+}
+
+.imageContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Tai 'contain' riippuen siitä, miten haluat kuvan skaalaavan */
+}
+.headerText {
+    font-weight: bold;
+}
+.countText {
+    color: rgb(132, 132, 132);
+}
+.boxLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}

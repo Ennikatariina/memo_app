@@ -1,0 +1,61 @@
+@import '../../assets/css/colors.css';
+  
+  .loginContainer {
+    height: 100vh;
+    background: linear-gradient(135deg, #7f00ff, #e100ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loginBox {
+    background-color: var(--backgroundColor);
+    width: 100%; /* Täytä koko leveys */
+    height: 60vh; /* Täytä jäljellä oleva puolikas näkymästä */
+    margin-top: 50vh; /* Aloita sivun keskeltä */
+    padding: 20px; /* Lisää hieman pehmustetta */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Lisää varjoa paremman näkyvyyden vuoksi */
+    border-top-left-radius: 15px; /* Pyöristetyt yläkulmat */
+    border-top-right-radius: 15px; /* Pyöristetyt yläkulmat */
+  }
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+
+  }
+  .loginLabel {
+    margin-bottom: 5px;
+  }
+  .loginInput {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .loginButton {
+    margin-top: 10px;
+    padding: 15px;
+    background-color: var(--buttonPrimary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .loginTitle {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .passwordResetContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    color: var(--textSecundary)
+  }
+  @media screen and (min-width: 768px) {
+    .loginBox {
+      width: 50%;
+      height: 50vh;
+      margin-top: 10vh;
+      border-radius: 15px
+    }
+    
+  }

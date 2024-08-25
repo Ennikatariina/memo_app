@@ -1,0 +1,23 @@
+.webcamContainer {
+    width: 100%;
+    max-width: 100vw; /* Maksimileveys koko näytön leveyden mukaan */
+    overflow: hidden; /* Piilota ylimääräinen sisältö */
+    z-index: 1; /* Aseta päällekkäin muiden elementtien kanssa */
+}
+
+.webcamContainer video {
+    width: 100%; /* Täyttää konteinerin leveyden */
+    height: auto; /* Säilytä videon suhde */
+}
+.capturedImage {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+}
+
+@media (min-aspect-ratio: 16/9) {
+    .webcamContainer video {
+        height: 100%; /* Täyttää konteinerin korkeuden */
+        width: auto; /* Säilytä videon suhde */
+    }
+}
