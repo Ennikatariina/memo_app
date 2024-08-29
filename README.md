@@ -3,7 +3,7 @@
 Take a picture and write a note about it.
 For example, Do you find it hard to remember the name of the last good wine you enjoyed? Take a picture of the bottle and jot down some notes. You can refer back to them later and easily check which wine it was.
 
-# React + TypeScript + Vite
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
