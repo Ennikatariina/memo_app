@@ -2,28 +2,18 @@ import { useState, useEffect } from 'react';
 import {useMessage} from '../../utils/messageContext';
 import { useUser } from '../../utils/UserProvider';
 import {getCategoryData, getNumberOfProductsInCategory} from '../../services/getDataToFirebase'
-import styles from './gategories.module.css';
+import styles from './Categories.module.css';
+import { Link } from 'react-router-dom';
 
 type CategoriesType = {
     [key: string]: number;
 };
 
-const Gategories = () => {
+const Categories = () => {
     const { user } = useUser();
     const { handleMessage } = useMessage();
     
     const [categories, setCategories] =useState<CategoriesType>({});
- 
-/*     useEffect(() => {
-        const fetchCategories = async () => {
-            if (user) {
-                const categoriesData = await getCategoryData(user);
-                console.log("Category", categoriesData);
-                 setCategories(categoriesData); 
-            }
-        }
-        fetchCategories();
-    }, [user]);  */
 
     useEffect(() => {
         const fetchNumberOfProductsInCategory = async () => {
@@ -47,7 +37,7 @@ const Gategories = () => {
                 {categories && Object.keys(categories).length > 0 ? (
                     Object.entries(categories).map(([category, count], index) => (
                             <div key={index} className={styles.boxContainer}>
-                                <a href={`#`} className={styles.boxLink}>
+                                <Link to={`/category/${category}`} className={styles.boxLink}>
                                     <div className={styles.imageContainer}>
                                         <img src="\src\assets\images\coffee-placeholder.jpg" alt="placeHolder" />
                                     </div>
@@ -55,7 +45,7 @@ const Gategories = () => {
                                         <p className={styles.headerText}>{category}</p>
                                         <p className={styles.countText}>({count})</p>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                     ))
                 ) : (
@@ -66,4 +56,4 @@ const Gategories = () => {
     );
 }
 
-export default Gategories
+export default Categories

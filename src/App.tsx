@@ -4,8 +4,9 @@ import LogIn from './components/login/LogIn'
 import { useUser } from './utils/UserProvider';
 import Header from './components/header/Header';
 import { Routes, Route } from 'react-router-dom';
-import Gategories from './components/gategories/Gategories';
+import Gategories from './components/categories/Categories';
 import AddNewMemo from './components/addNewMemo/AddNewMemo';
+import SelectedCategory from './components/selectedCategory/SelectedCategory';
 
 function App() {
   const{user} = useUser()
@@ -19,7 +20,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Gategories/>}/>
               <Route path="/addNewMemo" element={<AddNewMemo/>}/>
-              
+              <Route path="/:categoryName" element={<SelectedCategory/>} />
             </Routes>
           
      </>

@@ -29,7 +29,7 @@ function MobileMenuItems() {
                 <img src="\src\assets\home_FILL0_wght400_GRAD0_opsz24.png" alt="Menu" className={styles.homeIcon}/>
             </Link> */}
             <div className={styles.logoutContainer}>
-            <Link to="/" className={styles.linkText}> Asiat muistiin</Link>
+            <Link to="/" className={styles.linkText}>Memo</Link>
             </div>
             {/* <div className={styles.logoutButton}>
                 <Logout />

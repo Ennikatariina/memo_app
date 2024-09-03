@@ -18,3 +18,10 @@ export interface ImageDetailsInterface {
 
   
 }
+export interface Product {
+  id: string;
+  name: string;
+  review?: string;
+  category: string;
+  filename?: string;
+}

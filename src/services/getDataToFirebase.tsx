@@ -1,5 +1,6 @@
 import {db} from '../firebaseConfig';
-import { collection, getDocs,doc, getDoc} from "firebase/firestore"; 
+import { collection, getDocs,doc, getDoc, DocumentData} from "firebase/firestore"; 
+import { Product } from '../utils/interface';
 
 
 export const getCategoryData = async (userId:string) => {
@@ -21,25 +22,7 @@ export const getCategoryData = async (userId:string) => {
     }
 };
 
-/* export const getAmountOfCategories = async (userId:string) => {
-    try {
-        const userDocRef = doc(db, "users", userId);
-        const userDocSnapshot = await getDoc(userDocRef);
 
-        if (userDocSnapshot.exists()) {
-            const data = userDocSnapshot.data();
-            const subCollectionNames = data.subCollectionNames || [];
-            console.log("Amount of categories:", subCollectionNames.length);
-            return subCollectionNames.length;
-        } else {
-            console.log("Dokumenttia ei löytynyt!");
-            return 0;
-        }
-    } catch (e) {
-        console.error("Virhe haettaessa dokumenttia:", e);
-        return 0;
-    }
-} */
     export const getNumberOfProductsInCategory = async (userId:string) => {
         try {
             // Hae käyttäjän dokumentti
@@ -80,7 +63,16 @@ export const getProductsInCategory = async (userId:string, category:string) => {
     try {
         const categoryCollectionRef = collection(db, "users", userId, category);
         const categoryCollectionSnapshot = await getDocs(categoryCollectionRef);
-        const products = categoryCollectionSnapshot.docs.map(doc => doc.data());
+        const products: Product[] = categoryCollectionSnapshot.docs.map(doc => {
+            const data = doc.data() as DocumentData;
+            return {
+                id: doc.id,
+                name: data.name,
+                review: data.review,
+                category: data.category,
+                filename: data.filename,
+            } as Product;
+        });
         return products;
     } catch (e) {
         console.error("Virhe haettaessa dokumenttia:", e);
