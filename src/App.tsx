@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import Gategories from './components/categories/Categories';
 import AddNewMemo from './components/addNewMemo/AddNewMemo';
 import SelectedCategory from './components/selectedCategory/SelectedCategory';
+import Product from './components/product/Product';
 
 function App() {
   const{user} = useUser()
@@ -20,7 +21,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Gategories/>}/>
               <Route path="/addNewMemo" element={<AddNewMemo/>}/>
-              <Route path="/:categoryName" element={<SelectedCategory/>} />
+              <Route path="category/:categoryName" element={<SelectedCategory/>} />
+              <Route path="/:categoryName/product/:productid" element={<Product/>}/>
             </Routes>
           
      </>

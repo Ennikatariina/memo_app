@@ -1,3 +1,7 @@
+
+h1{
+    margin-left: 20px;
+}
 .boxContainer {
     display: flex; 
     width: 100%; 
@@ -28,4 +32,18 @@ h3 {
 
 p {
     margin: 0;
+}
+a{
+    text-decoration: none;
+    color: black;
+
+}
+a:hover {
+    color: blue;
+}
+@media (max-width: 768px) {
+    a:hover {
+        color: black;
+        background-color: transparent;
+    }
 }

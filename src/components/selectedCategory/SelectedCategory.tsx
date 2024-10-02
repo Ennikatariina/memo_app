@@ -3,14 +3,15 @@ import {useMessage} from '../../utils/messageContext';
 import { useUser } from '../../utils/UserProvider';
 import { useParams } from 'react-router-dom';
 import {getProductsInCategory} from '../../services/getDataToFirebase'
-import {Product} from '../../utils/interface' 
+import {ProductInterface} from '../../utils/interface' 
 import styles from './selectedCategory.module.css';
+import { Link } from 'react-router-dom';
 
 const SelectedCategory = () => {
     const { categoryName } = useParams();
     const { user } = useUser();
     const { handleMessage } = useMessage();
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<ProductInterface[]>([]);
 
     const fetchProductsInCategory = async () => {
         if (categoryName && user) {
@@ -29,8 +30,8 @@ const SelectedCategory = () => {
 
     return (
         <div className="">
-            <div>
-            <div>
+
+            <div className={styles.container}>
                 <h1>{categoryName}</h1>
                 {products && Object.keys(products).length > 0 ? (
                     <div>
@@ -41,7 +42,9 @@ const SelectedCategory = () => {
                                     <img src="\src\assets\images\coffee-placeholder.jpg"/>
                                 </div>
                                 <div className={styles.textContainer}>
+                                <Link to={`/${categoryName}/product/${product.id}`} className={styles.boxLink}>
                                     <h3>{product.name}</h3>
+                                </Link>
                                     <p>{product.review}</p>
                                 </div>
                             </div>
@@ -51,7 +54,6 @@ const SelectedCategory = () => {
                     <p>No products available</p>
                 )}
                 </div>
-            </div>
         </div>
 
     )

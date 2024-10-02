@@ -1,6 +1,6 @@
 import {db} from '../firebaseConfig';
 import { collection, getDocs,doc, getDoc, DocumentData} from "firebase/firestore"; 
-import { Product } from '../utils/interface';
+import { ProductInterface } from '../utils/interface';
 
 
 export const getCategoryData = async (userId:string) => {
@@ -63,7 +63,7 @@ export const getProductsInCategory = async (userId:string, category:string) => {
     try {
         const categoryCollectionRef = collection(db, "users", userId, category);
         const categoryCollectionSnapshot = await getDocs(categoryCollectionRef);
-        const products: Product[] = categoryCollectionSnapshot.docs.map(doc => {
+        const products: ProductInterface[] = categoryCollectionSnapshot.docs.map(doc => {
             const data = doc.data() as DocumentData;
             return {
                 id: doc.id,
@@ -71,11 +71,38 @@ export const getProductsInCategory = async (userId:string, category:string) => {
                 review: data.review,
                 category: data.category,
                 filename: data.filename,
-            } as Product;
+            } as ProductInterface;
         });
         return products;
     } catch (e) {
         console.error("Virhe haettaessa dokumenttia:", e);
         return [];
-    }
+    }}
+
+    export const getProduct = async (userId:string,category:string, productId:string) => {
+        try {
+            const productDocRef = doc(db, "users", userId, category, productId);
+            const productDocSnapshot = await getDoc(productDocRef);
+    
+            if (!productDocSnapshot.exists()) {
+                console.error("Tuotetta ei löytynyt!");
+                return [];
+            }
+            const data = productDocSnapshot.data();
+            console.log(productDocSnapshot.id,
+                data.name,
+                data.review,
+               data.category,
+                data.filename,)
+            return [{
+                id: productDocSnapshot.id,
+                name: data.name,
+                review: data.review,
+                category: data.category,
+                filename: data.filename,
+            }];
+        } catch (e) {
+            console.error("Virhe haettaessa dokumenttia:", e);
+            return [];
+        }
 }

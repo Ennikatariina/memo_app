@@ -18,7 +18,7 @@ export interface ImageDetailsInterface {
 
   
 }
-export interface Product {
+export interface ProductInterface {
   id: string;
   name: string;
   review?: string;
