@@ -8,7 +8,8 @@ import {deleteFile} from '../../services/deleteFile';
 import { addComponentToFirebase} from '../../services/addDataToFirebase';
 import { useUser } from '../../utils/UserProvider';
 import { useNavigate } from 'react-router-dom';
-import {getCategoryData} from '../../services/getDataToFirebase'
+import {getCategoryData} from '../../services/getDataToFirebase';
+import styles from "./addNewMeno.module.css";
 
 
 
@@ -42,7 +43,7 @@ const AddNewMemo = () => {
     const handleImageButton  = ()=>{
         setShowCamera(true);
       }
-      function handleImageDetails(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
+    function handleImageDetails(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
         const { id, value } = e.target;
         setImageDetails(prevDetails => ({
             ...prevDetails,
@@ -96,45 +97,71 @@ const AddNewMemo = () => {
     
 
     return (
-        <div>
+        <div className={styles.addNewMemo} >
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className={styles.formSection}>
                     <h2>Lisää uusi muistiinpano</h2>
-                    <h3>Ota kuva</h3>
-                    {showCamera ? <Camera setImage={setImage as cameraProps} setShowFormFields={setShowFormFields}/> 
-                : <button onClick={handleImageButton} ><img src="\src\assets\images\photo_camera_FILL0_wght400_GRAD0_opsz24.png"  alt="Camera" /></button>}
-                </div>
-                {showFormFields && (
-                <div>
-                    <h3>Lisää nimi</h3>
-                    <input id="name" type="text" placeholder="Kirjoita nimi"
-                        value={imageDetails.name ?? ''} 
-                        onChange={handleImageDetails}/>
-                    <h3>Lisää kategoria</h3>
-                    <p>Jos kategoriaa ei ole, niin lisää uusi kategoria</p>
-                    <select id="category" value={imageDetails.category ?? ''} onChange={handleImageDetails}>
-                        <option value="">Valitse kategoria</option>
-                        {categories.map((category, index) => (
-                            <option key={index} value={category}>
-                                {category}
-                            </option>
-                        ))}
-                    </select>
-                    <div>
-                        <input value={newCategory} type="text" id="new-category-input"placeholder="Kirjoita uusi kategoria" onChange={handleCategory} />
+                    <h3>Valitse kategoria tai lisää uusi kategoria</h3>
+                    <div id="category" className={styles.categorySection}>
+                        <p className={styles.categoryLabel}>Valitse kategoria</p>
+                        <select
+                            id="category"
+                            value={imageDetails.category ?? ''}
+                            onChange={handleImageDetails}
+                            className={styles.selectField}
+                        >
+                            <option value="">Valitse kategoria</option>
+                            {categories.map((category, index) => (
+                                <option key={index} value={category}>
+                                    {category}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className={styles.newCategorySection}>
+                        <p className={styles.categoryLabel}>Kirjoita uusi kategoria</p>
+                        <input value={newCategory} 
+                                type="text" 
+                                id="new-category-input"
+                                placeholder="Kirjoita uusi kategoria" 
+                                onChange={handleCategory} />
                        
                     </div>
-                    <div>
-                        <h3>Kirjoita arvostelu</h3>
-                        <textarea rows={4} cols={40} placeholder="Kirjoita tähän arvostelu" 
-                            id="review" 
-                            value={imageDetails.review ?? ''} 
-                            onChange={handleImageDetails}>
-                        </textarea>
+                    
+                    <h3>Ota kuva</h3>
+                    {showCamera ? <Camera setImage={setImage as cameraProps} setShowFormFields={setShowFormFields}/> 
+                : <button onClick={handleImageButton}  className={styles.cameraButton}>
+                        <img src="\src\assets\images\photo_camera_FILL0_wght400_GRAD0_opsz24.png"  alt="Camera" />
+                    </button>}
+                </div>
+                {showFormFields && (
+                    <div className={styles.formFields}>
+                        <p className={styles.categoryLabel}>Lisää nimi</p>
+                        <input
+                            id="name"
+                            type="text"
+                            placeholder="Kirjoita nimi"
+                            value={imageDetails.name ?? ''}
+                            onChange={handleImageDetails}
+                            className={styles.inputField}
+                        />
+                        
+                        <div>
+                            <p className={styles.categoryLabel}>Kirjoita arvostelu</p>
+                            <textarea
+                                rows={4}
+                                cols={40}
+                                placeholder="Kirjoita tähän arvostelu"
+                                id="review"
+                                value={imageDetails.review ?? ''}
+                                onChange={handleImageDetails}
+                                className={styles.textareaField}
+                            ></textarea>
+                        </div>
+                
+                        <input type="submit" value="Tallenna" className={styles.submitButton} />
                     </div>
-      
-                    <input type="submit" value="Tallenna" />
-                </div>)}
+                )}
                 
             </form>
         </div>

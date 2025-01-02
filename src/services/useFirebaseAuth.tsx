@@ -37,7 +37,7 @@ const useFirebaseAuth = ():FirebaseAuthFunction => {
     useEffect(() => {
         if (user){
         getUserRole(user as string)
-        console.log("useEffect role",role)
+        //console.log("useEffect role",role)
         } else{
             setRole(null)
         }
@@ -61,7 +61,7 @@ const useFirebaseAuth = ():FirebaseAuthFunction => {
             const userDoc = await getDoc(userDocRef);
             if(userDoc.exists()){
                 const userRole = userDoc.data()?.roles;
-                console.log("userRole",userRole)
+                //console.log("userRole",userRole)
                 setRole(userRole);
                 return userRole; 
             }   
